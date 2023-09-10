@@ -1,26 +1,33 @@
-import AdocaoBD from '../Persistencia/AdocaoBD.js';
+import AdocaoBD from "../Persistencia/AdocaoBD.js";
 
-/* --- Criando camada de modelo ---*/
+/* --- Criando camada de modelo para adoção---*/
 export default class Adocao {
-    
-    #id;
+    #codAdocao;
+    #animal;
     #adotante;
     #data;
-    #animal;
-    
-    constructor(id, adotante, data, animal={}) {
-        this.#id = id;
+
+    constructor(codAdocao = 0, animal = {}, adotante, data) {
+        this.#codAdocao = codAdocao;
+        this.#animal = animal;
         this.#adotante = adotante;
         this.#data = data;
-        this.#animal = animal;
     }
 
-    get id() {
-        return this.#id;
+    get codAdocao() {
+        return this.#codAdocao;
     }
 
-    set id(novoID) {
-        this.#id = novoID;
+    set codAdocao(novoID) {
+        this.#codAdocao = novoID;
+    }
+
+    get animal() {
+        return this.#animal;
+    }
+
+    set animal(novoAnimal) {
+        this.#animal = novoAnimal;
     }
 
     get adotante() {
@@ -39,20 +46,12 @@ export default class Adocao {
         this.#data = novaData;
     }
 
-    get animal() {
-        return this.#animal;
-    }
-
-    set animal(novoAnimal) {
-        this.#animal = novoAnimal;
-    }
-
     toJSON() {
         return {
-            id: this.#id,
+            codAdocao: this.#codAdocao,
+            animal: this.#animal,
             adotante: this.#adotante,
             data: this.#data,
-            animal: this.#animal
         };
     }
 
@@ -78,9 +77,9 @@ export default class Adocao {
         return adocoes;
     }
 
-    async consultarID(id) {
+    async consultarPorCodigo(codAdocao) {
         const adocaoBD = new AdocaoBD();
-        const adocaoInfo = await adocaoBD.consultarID(id);
-        return adocaoInfo;
+        const adocao = await adocaoBD.consultarPorCodigo(codAdocao);
+        return adocao;
     }
 }

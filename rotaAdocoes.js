@@ -1,14 +1,13 @@
 import { Router } from "express";
-import AdocaoCTRL from "./Controle/AdocaoCtrl.js";
+import AdocaoCTRL from "./Controle/AdocaoCtrl.js"; // Certifique-se de ter a classe AdocaoCTRL importada corretamente
 
-const rotaAdocoes = new Router();
-const adocoesCTRL = new AdocaoCTRL();
+const rotaAdocao = new Router();
+const adocaoCTRL = new AdocaoCTRL(); // Certifique-se de ter a classe AdocaoCTRL importada corretamente
 
-rotaAdocoes
-.post('/', adocoesCTRL.gravar)
-.put('/', adocoesCTRL.atualizar)
-.delete('/', adocoesCTRL.excluindo)
-.get('/', adocoesCTRL.consultando)
-.get('/:id', adocoesCTRL.consultandopeloID);
+rotaAdocao.post('/', adocaoCTRL.gravar)
+    .put('/', adocaoCTRL.atualizar)
+    .delete('/', adocaoCTRL.excluir)
+    .get('/', adocaoCTRL.consultar)
+    .get('/:codAdocao', adocaoCTRL.consultarPorCodigo);
 
-export default rotaAdocoes;
+export default rotaAdocao;

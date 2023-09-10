@@ -155,7 +155,7 @@ export default class AdocaoCTRL {
     }
 
     // Consulta todas as adoções ou filtra por termo (opcional)
-    consultar(requisicao, resposta) {
+    consultando(requisicao, resposta) {
         resposta.type('application/json');
         if (requisicao.method == "GET") {
             const termo = requisicao.query.termo || "";
@@ -174,7 +174,7 @@ export default class AdocaoCTRL {
     }
 
     // Consulta uma adoção pelo código da adoção (codAdocao)
-    consultarPorCodigo(requisicao, resposta) {
+    consultandoPorCodigo(requisicao, resposta) {
         resposta.type("application/json");
         const codAdocao = requisicao.params.codAdocao;
 

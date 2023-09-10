@@ -7,7 +7,7 @@ const adocaoCTRL = new AdocaoCTRL(); // Certifique-se de ter a classe AdocaoCTRL
 rotaAdocao.post('/', adocaoCTRL.gravar)
     .put('/', adocaoCTRL.atualizar)
     .delete('/', adocaoCTRL.excluir)
-    .get('/', adocaoCTRL.consultar)
-    .get('/:codAdocao', adocaoCTRL.consultarPorCodigo);
+    .get('/', adocaoCTRL.consultando)
+    .get('/:codAdocao', adocaoCTRL.consultandoPorCodigo);
 
 export default rotaAdocao;

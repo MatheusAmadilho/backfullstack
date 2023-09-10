@@ -42,7 +42,7 @@ export default class AdocaoBD {
     }
   }
 
-  async consultar() {
+  async consultar(termo) {
     const conexao = await conectando();
     const SQL = "SELECT * FROM adocoes as a INNER JOIN animais as c ON a.codigoAnimal = c.id WHERE adotante LIKE ?";
     const parametros = ['%' + termo + '%'];

@@ -15,7 +15,7 @@ export default class AdocaoCTRL {
             const codigoAnimal = dados.animal.id;
             const animal = new Animal(0, "")
     
-            .consultaCodigo(codigoAnimal)
+            .consultarID(codigoAnimal)
                 .then((animal) => {
                     if (adotante && data && animal) {
                         const adocao = new Adocao(0, adotante, data, animal);
@@ -66,7 +66,7 @@ export default class AdocaoCTRL {
             const codigoAnimal = dados.animal.id;
             const animal = new Animal(0, "")
     
-            .consultaCodigo(codigoAnimal)
+            .consultarID(codigoAnimal)
                 .then((animal) => {
                     if (id && adotante && data && animal) {
                         const adocao = new Adocao(id, adotante, data, animal);

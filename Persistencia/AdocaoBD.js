@@ -7,7 +7,7 @@ export default class AdocaoBD {
     async incluir(adocao) {
         if (adocao instanceof Adocao) {
             const conexao = await conectando();
-            const SQL = "INSERT INTO adocoes (animal_id, adotante, data) VALUES (?, ?, ?)";
+            const SQL = "INSERT INTO adocoes (animal, adotante, data) VALUES (?, ?, ?)";
             const valores = [adocao.animal.id, adocao.adotante, adocao.data];
             const resultado = await conexao.query(SQL, valores);
             return resultado[0].insertId; // Retornando o ID gerado
@@ -17,7 +17,7 @@ export default class AdocaoBD {
     async alterar(adocao) {
         if (adocao instanceof Adocao) {
             const conexao = await conectando();
-            const SQL = "UPDATE adocoes SET animal_id=?, adotante=?, data=? WHERE codAdocao=?";
+            const SQL = "UPDATE adocoes SET animal=?, adotante=?, data=? WHERE codAdocao=?";
             const valores = [adocao.animal.id, adocao.adotante, adocao.data, adocao.codAdocao];
             await conexao.query(SQL, valores);
         }
@@ -32,12 +32,12 @@ export default class AdocaoBD {
         }
     }
 
-    async consultar(termo) {
+    async consultar() {
         const adocoes = [];
         const conexao = await conectando();
-        const SQL = "SELECT * FROM adocoes as a INNER JOIN animais as ani ON a.animal_id=ani.id WHERE ani.nome LIKE ?";
-        const valores = ['%' + termo + '%'];
-        const [rows] = await conexao.query(SQL, valores);
+        const SQL = "SELECT * FROM adocoes as a INNER JOIN animais as ani ON a.animal=ani.id";
+        // const valores = ['%' + termo + '%'];
+        const [rows] = await conexao.query(SQL);
 
         for (const row of rows) {
             const animal = new Animal(row["id"], row["nome"], row["idade"], row["pelagem"], row["genero"], row["porte"], row["necessidadesEspeciais"], row["vacinas"], row["castrado"], row["foto"]);
@@ -51,7 +51,7 @@ export default class AdocaoBD {
     async consultarPorCodigo(codAdocao) {
         const adocao = [];
         const conexao = await conectando();
-        const SQL = "SELECT * FROM adocoes as a INNER JOIN animais as ani ON a.animal_id=ani.id WHERE codAdocao = ?";
+        const SQL = "SELECT * FROM adocoes as a INNER JOIN animais as ani ON a.animal=ani.id WHERE codAdocao = ?";
         const valores = [codAdocao];
         const [rows] = await conexao.query(SQL, valores);
 

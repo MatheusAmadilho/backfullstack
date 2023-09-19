@@ -29,7 +29,9 @@ export default class Adocao {
     set animal(novoAnimal) {
         this.#animal = novoAnimal;
     }
-
+    getAnimalID() {
+        return this.#animal.id;
+    }
     get adotante() {
         return this.#adotante;
     }

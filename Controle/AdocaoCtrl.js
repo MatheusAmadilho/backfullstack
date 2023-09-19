@@ -13,7 +13,7 @@ export default class AdocaoCTRL {
 
         if (requisicao.method === "POST" && requisicao.is('application/json')) {
             const dados = requisicao.body;
-            const animalId = dados.animalId;
+            const animalId = dados.animal.id;
             const adotante = dados.adotante;
             const data = new Date(dados.data);
 
@@ -69,7 +69,7 @@ export default class AdocaoCTRL {
         if (requisicao.method === "PUT" && requisicao.is('application/json')) {
             const dados = requisicao.body;
             const codAdocao = dados.codAdocao;
-            const animalId = dados.animalId;
+            const animalId = dados.animal.id;
             const adotante = dados.adotante;
             const data = new Date(dados.data);
 

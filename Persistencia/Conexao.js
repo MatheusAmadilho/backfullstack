@@ -1,5 +1,6 @@
 ﻿import mysql from 'mysql2/promise'
 /* Estabelecendo conexão com o banco de dados*/
+//Só pra alterar
 
 export default async function conectando(){
     if (global.conexao && (global.conexao.status !== "disconnected"))
